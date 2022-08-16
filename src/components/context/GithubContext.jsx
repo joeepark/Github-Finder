@@ -14,7 +14,6 @@ export default function UserProvider({ children }) {
 
   const searchUsers = async (text) => {
     try {
-      setLoading();
       const params = new URLSearchParams({
         q: text,
       });
@@ -30,12 +29,6 @@ export default function UserProvider({ children }) {
     }
   };
 
-  const setLoading = () => {
-    dispatch({
-      type: 'SET_LOADING',
-    });
-  };
-
   const clearSearch = () => {
     dispatch({
       type: 'CLEAR_USERS'
@@ -43,7 +36,7 @@ export default function UserProvider({ children }) {
   }
 
   return (
-    <GithubContext.Provider value={{ users: state.users, isLoading: state.loading, searchUsers, clearSearch }}>
+    <GithubContext.Provider value={{ users: state.users, searchUsers, clearSearch }}>
       {children}
     </GithubContext.Provider>
   );

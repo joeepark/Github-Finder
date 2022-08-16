@@ -1,9 +1,12 @@
 import { useContext } from 'react';
 import { GithubContext } from '../context/GithubContext';
 import UserItems from './UserItems';
+import { AlertContext } from '../context/AlertContext';
+import AlertUser from './UserAlert';
 
 export default function UserResults() {
-  const { users, isLoading } = useContext(GithubContext);
+  const { users } = useContext(GithubContext);
+  const { isLoading } = useContext(AlertContext);
 
   // console.log('users', users)
   if (!isLoading) {
@@ -15,6 +18,6 @@ export default function UserResults() {
       </div>
     );
   } else {
-    return <h2>...Loading</h2>;
+    <AlertUser />;
   }
 }
