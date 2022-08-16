@@ -7,6 +7,7 @@ export const GithubContext = createContext();
 export default function UserProvider({ children }) {
   const initialState = {
     users: [],
+    user: {},
     loading: false,
   };
 
@@ -23,7 +24,21 @@ export default function UserProvider({ children }) {
         type: 'GET_USERS',
         payload: data.items,
       });
-      console.log(data)
+      // console.log(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const getUser = async (login) => {
+    try {
+      const response = await fetch(`https://api.github.com/users/${login}`);
+      const data = await response.json();
+      dispatch({
+        type: 'GET_USER',
+        payload: data,
+      });
+      // console.log(data);
     } catch (err) {
       console.error(err);
     }
@@ -31,12 +46,14 @@ export default function UserProvider({ children }) {
 
   const clearSearch = () => {
     dispatch({
-      type: 'CLEAR_USERS'
-    })
-  }
+      type: 'CLEAR_USERS',
+    });
+  };
 
   return (
-    <GithubContext.Provider value={{ users: state.users, searchUsers, clearSearch }}>
+    <GithubContext.Provider
+      value={{ users: state.users, user: state.user, searchUsers, clearSearch, getUser }}
+    >
       {children}
     </GithubContext.Provider>
   );

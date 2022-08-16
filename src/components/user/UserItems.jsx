@@ -12,8 +12,8 @@ export default function UserItems({ user: { login, avatar_url } }) {
           </div>
         </div>
         <div>
-          <Link className="text-white" to={`/users/${login}`}>
-          <h2 className="card-title">{login}</h2>
+          <Link className="text-white" to={`/user/${login}`}>
+            <h2 className="card-title">{login}</h2>
           </Link>
         </div>
       </div>
