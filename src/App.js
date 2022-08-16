@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import About from './components/About';
+import About from './components/routes/About';
 import Footer from './components/layout/Footer';
 import Navbar from './components/layout/Navbar';
-import Home from './components/Home';
-import NotFound from './components/NotFound';
-import UserProvider from './components/context/UserContext';
+import Home from './components/routes/Home';
+import NotFound from './components/routes/NotFound';
+import UserProvider from './components/context/GithubContext';
 
 function App() {
   return (
